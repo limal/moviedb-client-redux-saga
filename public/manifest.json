@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "moviedb-client-redux-saga",
+  "name": "The Movies DB React/Redux/Redux-Saga web app",
   "icons": [
     {
       "src": "favicon.ico",
