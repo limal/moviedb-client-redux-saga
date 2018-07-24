@@ -15,7 +15,7 @@ class Movie extends PureComponent {
             movie
         } = this.props
 
-        const base_url = config && config.images.base_url
+        const base_url = config && config.images.secure_base_url
 
         return (
             <li className="Movie">
