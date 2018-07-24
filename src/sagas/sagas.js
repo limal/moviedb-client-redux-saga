@@ -5,6 +5,7 @@ import axios from "axios"
 const key = atob(`ZDEwNDg3NzNkOTkzZmFlMjZjZGNiYzk2MjE5MDZhZmI${'='}`)
 
 export function* watcherSaga() {
+    // observe request to Movie API and take control
     yield takeLatest("MOVIE_API_REQUEST", fetchApiSaga)
 }
 
@@ -35,18 +36,27 @@ function* fetchApiSaga() {
             page = 1,
             response
         
+        // API response for movies is paginated, use a loop to fetch all movies
         do {
+            // fetch another page
             response = yield call(fetchMovies, page)
+            // combine the results
             movies = [ ...movies, ...response.data.results ]
             page++ 
         } while (page <= response.data.total_pages)
 
+        // sort movies by popularity (a float number between 0-...)
+        movies.sort((m, m2) => m2.popularity - m.popularity)
+
+        // fetch config
         response = yield call(fetchConfig)
         const config = response.data
 
+        // fetch genres
         response = yield call(fetchGenres)
         const genres = response.data
 
+        // dispatch success actions
         yield [
             put({ type: "MOVIE_API_SUCCESS_MOVIES", movies }),
             put({ type: "MOVIE_API_SUCCESS_CONFIG", config }),

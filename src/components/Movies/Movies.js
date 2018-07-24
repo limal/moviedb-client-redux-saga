@@ -20,15 +20,16 @@ class Movies extends PureComponent {
 
     render() {
         const {
+            config,
             loading,
             movies
         } = this.props
 
         return (
-            <div className="Movies">
-                { loading && <h1>Please wait...</h1> /* I'm not focusing on UI for this. It loads instantly anyway for demo purposes */ }
-                { movies && movies.map((movie, i) => <Movie movie={movie} key="i" />) }
-            </div>
+            <ul className="Movies">
+                { loading && <h1>Please wait...</h1> /* I'm not focusing on UI for this. It loads nearly instantly anyway for demo purposes */ }
+                { movies && movies.map((movie, i) => <Movie movie={movie} config={config} key={i} />) }
+            </ul>
         )
     }
 }
