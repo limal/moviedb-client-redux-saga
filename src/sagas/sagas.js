@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects"
 import axios from "axios"
 
+// Not sure how to store it in GitHub pages' environment variable so unfortunetly adding it to the repo so I can focus on other stuff
 const key = atob(`ZDEwNDg3NzNkOTkzZmFlMjZjZGNiYzk2MjE5MDZhZmI${'='}`)
 
 export function* watcherSaga() {
@@ -31,7 +32,7 @@ function fetchGenres() {
 function* fetchApiSaga() {
     try {
         let response = yield call(fetchMovies)
-        const movies = response.data
+        const movies = response.data.results
 
         response = yield call(fetchConfig)
         const config = response.data

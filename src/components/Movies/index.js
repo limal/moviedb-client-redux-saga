@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import './Movies.css'
+import Movie from './Movie'
 
 class Movies extends PureComponent {
     constructor(props) {
@@ -19,25 +20,14 @@ class Movies extends PureComponent {
 
     render() {
         const {
-            error,
             loading,
             movies
         } = this.props
 
         return (
             <div className="Movies">
-                Movies
-                <code>
-                    <pre>
-                        loading: { loading ? 'true' : 'false' }
-
-                        error: { JSON.stringify(error) }
-
-                        config: { JSON.stringify(config) }
-                        genres: { JSON.stringify(genres) }
-                        movies: { JSON.stringify(movies) }
-                    </pre>
-                </code>
+                { loading && <h1>Please wait...</h1> /* I'm not focusing on UI for this. It loads instantly anyway for demo purposes */ }
+                { movies && movies.map((movie, i) => <Movie movie={movie} key="i" />) }
             </div>
         )
     }
