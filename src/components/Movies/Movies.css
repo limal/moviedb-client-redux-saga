@@ -6,22 +6,43 @@
     list-style: none;
 }
 
-.Movie {
-    flex: 1 1 0;
-    flex-basis: 33%;
-    margin: 40px 0px;
+    .Movie {
+        flex: 1 1 0;
+        flex-basis: 33%;
+        margin: 40px 0px;
+    }
+
+        .Movie__Poster__Image {
+            box-shadow: 0 0 60px 1px rgba(100,100,100,.6);
+        }
+
+.Movies__Filters {
+    max-width: 960px;
+    margin: 0 auto;
 }
 
-.Movie__Poster__Image {
-    box-shadow: 0 0 60px 1px rgba(100,100,100,.6);
-}
+    .MovieGenreFilter {
+        margin: 20px 0;
+    }
 
-.MovieRatingFilter__Label {
-    font-size: 20px;
-    margin: 0 20px 0 0;
-}
+        .MovieGenreFilter__Genre__Label {
+            font-size: 20px;
+            line-height: 32px;
+            margin: 0 10px;
+        }
 
-.MovieRatingFilter__Input {
-    font-size: 28px;
-    padding: 4px 8px;
-}
+        .MovieGenreFilter__Genre__Input {
+            height: 20px;
+            margin-left: 12px;
+            width: 20px;
+        }
+
+    .MovieRatingFilter__Label {
+        font-size: 20px;
+        margin: 0 20px 0 0;
+    }
+
+    .MovieRatingFilter__Input {
+        font-size: 28px;
+        padding: 4px 8px;
+    }

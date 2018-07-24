@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import './Movies.css'
 import Movie from './Movie'
+import MovieGenreFilter from './MovieGenreFilter'
 import MovieRatingFilter from './MovieRatingFilter'
 
 class Movies extends PureComponent {
@@ -13,11 +14,11 @@ class Movies extends PureComponent {
         const {
             allMovies,
             config,
-            minRating
+            filterMinRating
         } = this.props
 
         // filter movies by rating and genres
-        const movies = allMovies && allMovies.filter(movie => movie.vote_average > minRating)
+        const movies = allMovies && allMovies.filter(movie => movie.vote_average > filterMinRating)
         // I'm not focusing on UI for this. It loads nearly instantly anyway for demo purposes
         const Loading = (props) => props.loading ? <h1>Please wait...</h1> : ''
 
@@ -25,6 +26,7 @@ class Movies extends PureComponent {
             <Loading />,
             <div className="Movies__Filters">
                 <MovieRatingFilter />
+                <MovieGenreFilter />
                 { movies && <h3>Total movies: { movies.length }</h3> }
             </div>,
             <ul className="Movies">
@@ -39,8 +41,9 @@ export default connect(
         allMovies: state.moviedb.movies,
         config: state.moviedb.config,
         error: state.moviedb.error,
+        filterGenres: state.moviedb.filterGenres,
+        filterMinRating: state.moviedb.filterMinRating,
         genres: state.moviedb.genres,
-        minRating: state.moviedb.minRating,
         loading: state.moviedb.loading
     }),
     dispatch => ({

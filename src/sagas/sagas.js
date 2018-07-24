@@ -54,7 +54,7 @@ function* fetchApiSaga() {
 
         // fetch genres
         response = yield call(fetchGenres)
-        const genres = response.data
+        const genres = response.data.genres
 
         // dispatch success actions
         yield [

@@ -11,18 +11,18 @@ class MovieRatingFilter extends PureComponent {
     }
 
     handleChange(event) {
-        this.props.setMinRating(event.target.value)
+        this.props.setFilterMinRating(event.target.value)
     }
 
     render() {
         const {
-            minRating
+            filterMinRating
         } = this.props
 
         return (
             <div className="MovieRatingFilter">
                 <label htmlFor="MovieRatingFilter" className="MovieRatingFilter__Label">Minimum rating:</label>
-                <input className="MovieRatingFilter__Input" type="number" name="minRating" value={minRating} step="0.5" min="0" max="10" id="MovieRatingFilter" onChange={this.handleChange} />
+                <input className="MovieRatingFilter__Input" type="number" name="filterMinRating" value={filterMinRating} step="0.5" min="0" max="10" id="MovieRatingFilter" onChange={this.handleChange} />
             </div>
         )
     }
@@ -30,9 +30,9 @@ class MovieRatingFilter extends PureComponent {
 
 export default connect(
     state => ({
-        minRating: state.moviedb.minRating
+        filterMinRating: state.moviedb.filterMinRating
     }),
     dispatch => ({
-        setMinRating: (minRating) => dispatch({ type: 'MOVIE_SET_MIN_RATING', minRating })
+        setFilterMinRating: (filterMinRating) => dispatch({ type: 'MOVIE_SET_FILTER_MIN_RATING', filterMinRating })
     })
 )(MovieRatingFilter)
