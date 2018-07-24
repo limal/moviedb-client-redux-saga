@@ -18,14 +18,15 @@ class Movies extends PureComponent {
             filterMinRating
         } = this.props
 
-        // filter movies by rating and genres
+        // filter movies by rating and genres:
+        // - for each movie:
         const movies = (allMovies && filterGenres) && allMovies.filter(movie => {
-            // this check works as follows:
-            // - for each movie
+            // check its genre that works as follows:
             // - for each filter genre
             // - make sure that the current movie has each filter genre (note the && opeartor line below) set in its genre_ids
             const genreCheck = filterGenres.map(id => id).reduce((acc, cur) => acc && movie.genre_ids.find(id => cur === id), true)
 
+            // make sure its above the minimum rating as well
             return movie.vote_average > filterMinRating && genreCheck
         })
         // I'm not focusing on UI for this. It loads nearly instantly anyway for demo purposes

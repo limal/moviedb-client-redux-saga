@@ -22,9 +22,6 @@ class MovieGenreFilter extends PureComponent {
 
         return (
             <div className="MovieGenreFilter">
-                <pre>
-                    { filterGenres }
-                </pre>
                 { genres && genres.map((genre, i) => (
                     <label key={i} className="MovieGenreFilter__Genre__Label">
                         {genre.name}
