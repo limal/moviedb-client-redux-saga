@@ -8,10 +8,10 @@ export function* watcherSaga() {
     yield takeLatest("MOVIE_API_REQUEST", fetchApiSaga)
 }
 
-function fetchMovies() {
+function fetchMovies(page) {
     return axios({
         method: "get",
-        url: `https://api.themoviedb.org/3/movie/now_playing?region=GB&api_key=d1048773d993fae26cdcbc9621906afb&region=GB&api_key=d1048773d993fae26cdcbc9621906afb&`
+        url: `https://api.themoviedb.org/3/movie/now_playing?region=GB&api_key=d1048773d993fae26cdcbc9621906afb&region=GB&api_key=d1048773d993fae26cdcbc9621906afb&page=${page}`
     })
 }
 
@@ -31,8 +31,15 @@ function fetchGenres() {
 
 function* fetchApiSaga() {
     try {
-        let response = yield call(fetchMovies)
-        const movies = response.data.results
+        let movies = [],
+            page = 1,
+            response
+        
+        do {
+            response = yield call(fetchMovies, page)
+            movies = [ ...movies, ...response.data.results ]
+            page++ 
+        } while (page <= response.data.total_pages)
 
         response = yield call(fetchConfig)
         const config = response.data
