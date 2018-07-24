@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import Movies from './Movies'
 
 class App extends Component {
   render() {
@@ -8,9 +9,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">MovieDB</h1>
         </header>
-        <p className="App-intro">
-          Hello World!
-        </p>
+        <Movies />
       </div>
     )
   }
